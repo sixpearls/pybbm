@@ -10,13 +10,12 @@
 {% endblock %}
 
 {% block content %}
-    <div class="forum">
+    <header>
         <h1>{{ forum.name }}</h1>
         {% if forum.headline %}
-            <div class="forum-headline alert alert-block">
                 {{ forum.headline|safe }}
-            </div>
         {% endif %}
+    </header>
 
         {% include "pybb/pagination.html" %}
 
@@ -29,5 +28,4 @@
                 {% include "pybb/_button_new_topic.html" %}
             </div>
         {% endif %}
-    </div>
 {% endblock content %}

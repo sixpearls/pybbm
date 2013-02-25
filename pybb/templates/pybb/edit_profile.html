@@ -4,21 +4,23 @@
 {% block title %}{% trans "Profile editing" %}{% endblock title %}
 
 {% block content %}
-    <h1>{% trans "Profile editing" %}</h1>
-    <div class="avatar">
+    <header>
+        <h1>{% trans "Profile editing" %}</h1>
+    </header>
     {% thumbnail form.instance.avatar "80x80" as avatar %}
-        <img src="{{ avatar.url }}" alt="avatar">
+        <img src="{{ avatar.url }}" alt="avatar" id="avatar">
     {% empty %}
-        <img src="{{ PYBB_DEFAULT_AVATAR_URL }}" alt="avatar">
+        <img src="{{ PYBB_DEFAULT_AVATAR_URL }}" alt="avatar" id="avatar">
     {% endthumbnail %}
-    </div>
-    <p><a href="{% url auth_password_change %}">{% trans "Change the password" %}</a></p>
+    <a href="{% url auth_password_change %}">{% trans "Change the password" %}</a>
     <form method="post" enctype="multipart/form-data" class="profile-edit">
         {% csrf_token %}
         <fieldset>
             <legend>{% trans "Profile editing" %}</legend>
-            {% include "pybb/form.html" %}
-            <p>{% include "pybb/_button_save.html" %}</p>
+            <ul>
+                {{ form.as_li }}
+                <li>{% include "pybb/_button_save.html" %}</li>
+            </ul>
         </fieldset>
     </form>
     <h1>{% trans "Subscriptions on topics" %}</h1>

@@ -2,10 +2,10 @@
 {% load i18n pybb_tags %}
 
 {% block content %}
-    <h1>{% trans "Are you sure you want to delete this message?" %}</h1>
-    <div class="post-preview well">
-        {{ post.body_html|safe }}
-    </div>
+    <header>
+        <h1>{% trans "Are you sure you want to delete this message?" %}</h1>
+    </header>
+    {{ post.body_html|safe }}
     <form method="post" action=".">
         {% csrf_token %}
         <p>

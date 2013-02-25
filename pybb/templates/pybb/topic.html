@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="topic">
+        <header>
         <h1>{{ topic.name }}</h1>
         {% with _('Posts') as label %}
             {% include "pybb/pagination.html" %}
@@ -25,8 +25,9 @@
         {% if topic.poll_type != 0 %}
             {% include 'pybb/poll.html' %}
         {% endif %}
+        </header>
 
-        <div class="posts">
+        <ul class="posts">
             {% if first_post %}{% ifnotequal first_post post_list.0 %}
                 {% with first_post as post %}
                     <li class="first_post">{% include "pybb/post_template.html" %}</li>
@@ -34,10 +35,10 @@
             {% endifnotequal %}{% endif %}
             {% for post in post_list %}
                 {% cycle 'odd' 'even' as rowcolors silent %}
-                {% include "pybb/post_template.html" %}
+                <li>{% include "pybb/post_template.html" %}</li>
             {% endfor %}
-        </div>
-        <div>&nbsp;</div>
+        </ul>
+        <footer>
         {% with _('Posts') as label %}
             {% include "pybb/pagination.html" %}
         {% endwith %}
@@ -90,5 +91,5 @@
                 {% endfor %}
             </div>
         {% endif %}
-    </div>
+        </footer>
 {% endblock %}
